@@ -5,16 +5,12 @@ import artory.artory.domain.common.BaseEntity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 
 
 @Entity
 @Getter
 @Builder
-@DynamicUpdate
-@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class ScrapStory extends BaseEntity {
@@ -22,7 +18,7 @@ public class ScrapStory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "scrap_id")
+    @Column(name = "scrapStory_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

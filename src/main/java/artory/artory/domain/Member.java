@@ -6,8 +6,7 @@ import artory.artory.domain.enums.Gender;
 import artory.artory.domain.enums.Genre;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,6 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@DynamicUpdate
-@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member extends BaseEntity {
@@ -45,8 +42,8 @@ public class Member extends BaseEntity {
     private String age;
 
 
-    //    @Column(nullable = false, length = 40) 필요하면 제한하자, 일단은 이대로
-//3가지 이상보다는 3가지로 제한 하는게...
+    //@Column(nullable = false, length = 40) 필요하면 제한하자, 일단은 이대로
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(20)")
     private Genre genre1;
@@ -73,10 +70,20 @@ public class Member extends BaseEntity {
     private List<ScrapMember> scrapMemberList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Story> storyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<ScrapStory> scrapStoryList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<ScrapExhibition> scrapExhibitionList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<LikeExhibition> likeExhibitionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<LikeStory> likeStoryList = new ArrayList<>();
 }

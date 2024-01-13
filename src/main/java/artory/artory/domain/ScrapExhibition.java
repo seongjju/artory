@@ -1,8 +1,11 @@
 package artory.artory.domain;
 
+
 import artory.artory.domain.common.BaseEntity;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 
 
 
@@ -11,25 +14,26 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Comment extends BaseEntity{
-
+public class ScrapExhibition extends BaseEntity {
+//My Story 달력에 필요
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
+    @Column(name = "scrapExhibition_id")
     private Long id;
 
+    private int year;
+    private int month;
+    private int day;
 
-    private String commentSatisfactionLevel;
-    @Lob
-    private String commentContext;
-
-    //대댓글 일단 보류
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "story_id")
-    private Story story;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_id")
+    private Exhibition exhibition;
+
+
+
 }
